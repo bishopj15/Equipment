@@ -2,39 +2,24 @@ package mcps.po.equipment.model;
 
 import java.sql.Date;
 
-public class EquipmentInformation {
+public class Equipment {
 	private int pkey;
 	private String barcode;
-	private int equipmentTypeFk;
+	private EquipmentType equipmentType;
 	private String room;
 	private String serialNumber;
-	private int manufacturer;
+	private Manufacturer manufacturer;
 	private String modelNumber;
 	private Date beginServiceDate;
 	private int cost;
 	private int age;
 	
-	public EquipmentInformation(){
-		
-	}
+	public Equipment(){}
 	
-	/**
-	 * 
-	 * @param pkey
-	 * @param barcode
-	 * @param equipmentFk
-	 * @param room
-	 * @param serialNumber
-	 * @param manufacturer
-	 * @param modelNumber
-	 * @param beginDate
-	 * @param cost
-	 * @param age
-	 */
-	public EquipmentInformation(int pkey, String barcode, int equipmentFk, String room, String serialNumber, int manufacturer, String modelNumber, Date beginDate, int cost, int age){
+	public Equipment(int pkey, String barcode, EquipmentType equipmentType, String room, String serialNumber, Manufacturer manufacturer, String modelNumber, Date beginDate, int cost, int age){
 		this.pkey = pkey;
 		this.barcode = barcode;
-		this.equipmentTypeFk = equipmentFk;
+		this.equipmentType = equipmentType;
 		this.room = room;
 		this.serialNumber = serialNumber;
 		this.manufacturer = manufacturer;
@@ -60,12 +45,12 @@ public class EquipmentInformation {
 		this.barcode = barcode;
 	}
 	
-	public int getEquipmentTypeFk(){
-		return this.equipmentTypeFk;
+	public EquipmentType getEquipmentType(){
+		return this.equipmentType;
 	}
 	
-	public void setEquipmentTypeFk(int fk){
-		this.equipmentTypeFk = fk;
+	public void setEquipmentTypeFk(EquipmentType et){
+		this.equipmentType = et;
 	}
 	
 	public String getRoom(){
@@ -84,11 +69,11 @@ public class EquipmentInformation {
 		this.serialNumber = sn;
 	}
 	
-	public int getManufacturer(){
+	public Manufacturer getManufacturer(){
 		return this.manufacturer;
 	}
 	
-	public void setManufacturer(int manufacturer){
+	public void setManufacturer(Manufacturer manufacturer){
 		this.manufacturer = manufacturer;
 	}
 	
@@ -123,7 +108,4 @@ public class EquipmentInformation {
 	public void setAge(int age){
 		this.age = age;
 	}
-	
-	
-	
 }

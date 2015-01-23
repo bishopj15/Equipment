@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import mcps.po.equipment.dao.EquipmentInformationDao;
 import mcps.po.equipment.model.EquipmentInformation;
 
-@Path("/v1.0/equipment")
+@Path("/v1.0/equipmentinformation")
 public class EquipmentInformationRest {
 	EquipmentInformationDao equipmentInformationDao = EquipmentInformationDao.getInstance();
 	
@@ -51,7 +51,7 @@ public class EquipmentInformationRest {
 	@Path("/pkey/{pkey}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response jsonEquipmentInformations(@PathParam("pkey") final int pkey){
+	public Response getEquipmentInformationByPkey(@PathParam("pkey") final int pkey){
 		Response response;
 		
 		try {
@@ -77,7 +77,7 @@ public class EquipmentInformationRest {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response addEquipmentType(String jsonEquipmentInformations){
+	public Response addEquipmentInformation(String jsonEquipmentInformations){
 		Response response;
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -102,7 +102,7 @@ public class EquipmentInformationRest {
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response updateEquipmentType(String jsonEquipmentInformations){
+	public Response updateEquipmentInformation(String jsonEquipmentInformations){
 		Response response;
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -127,7 +127,7 @@ public class EquipmentInformationRest {
 	@Path("/pkey/{pkey}")
 	@DELETE
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response deleteEquipmentType(@PathParam("pkey") final int pkey){
+	public Response deleteEquipmentInformation(@PathParam("pkey") final int pkey){
 		Response response;
 		
 		try{
