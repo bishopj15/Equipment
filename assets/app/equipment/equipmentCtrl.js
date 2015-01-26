@@ -12,7 +12,7 @@ angular.module('app').controller('equipmentCtrl', function($scope, equipmentApi)
 			}, function(error){
 				
 			});
-		
+		console.log(items);
 		if(items){
 			$scope.equipments = items;
 		}
