@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>Inspections</display-name>
+  <display-name>EquipmentDB</display-name>
   <listener>
     <listener-class>mcps.po.equipment.dao.DatabaseStartup</listener-class>
   </listener>
@@ -21,7 +21,7 @@
     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>javax.ws.rs.Application</param-name>
-      <param-value>com.bushmaster.service.MyApplication</param-value>
+      <param-value>mcps.po.equipment.service.MyApplication</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>

@@ -10,7 +10,7 @@ var del = require('del');
 var path = {
   rootViews: ['./assets/app/index.html', './assets/app/incompatible-browser.html'],
   views: ['./assets/app/**/*.html', '!./assets/app/index.html'],
-  mainSass: ['./assets/app/main.scss'],
+  mainCss: ['./assets/app/main.css'],
   scripts: ['./assets/app/**/*.js']
 };
 
@@ -37,12 +37,8 @@ var onError = function(err) {
  * Compiles main.scss into css, moves the compiled css into dist/css.
  * Uses gulp-plumber to send errors to onError.
  */
-gulp.task('sass', function() {
-  gulp.src(path.mainSass)
-    .pipe(plumber({
-      errorHandler: onError
-    }))
-    .pipe(sass())
+gulp.task('css', function() {
+  gulp.src(path.mainCss)
     .pipe(gulp.dest('./WebContent/dist/app'));
 });
 
@@ -107,7 +103,7 @@ gulp.task('watch', ['lint'], function() {
 });
 
 gulp.task('dist', function() {
-  gulp.start('views', 'sass', 'bundle', 'libs', 'resources');
+  gulp.start('views', 'css', 'bundle', 'libs', 'resources');
 });
 
 gulp.task('default', ['dist', 'lint']);
