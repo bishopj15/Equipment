@@ -1,4 +1,9 @@
 /build/
-WebContent/
 node_modules/
 assets/bower_components/
+WebContent/WEB-INF/classes
+WebContent/WEB-INF/classes/com
+WebContent/.DS_Store
+WebContent/dist/
+war/
+extbuild/
