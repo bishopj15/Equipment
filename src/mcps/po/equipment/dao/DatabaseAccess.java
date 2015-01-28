@@ -28,7 +28,7 @@ public class DatabaseAccess {
 	
 	private static int maxActive = 20;
 	private static int maxIdle = 2;
-	private static int maxWait = 10000;
+	private static int maxWait = 3000;
 
 	private static String dbURI = "";
 	private static String pwd = "";
@@ -98,9 +98,14 @@ public class DatabaseAccess {
 			poolConfig.setMaxTotal(maxActive);
 			poolConfig.setMaxWaitMillis(maxWait);
 	        poolConfig.setMinIdle(maxIdle);
+	        
+	        
+	        
 			 
 			//create actual pool of connections
 			ObjectPool<PoolableConnection> connectionPool = new GenericObjectPool<>(poolableConnectionFactory, poolConfig);
+			
+			poolableConnectionFactory.setPool(connectionPool);
 			
 			//create pooling driver
 			Class.forName("org.apache.commons.dbcp2.PoolingDriver");
@@ -109,12 +114,14 @@ public class DatabaseAccess {
 			//register pool
 			driver.registerPool(dbPoolName, connectionPool);
 			
-//			//validate pool
-//			this.printDriverStats();
-//			Connection c = getConnection();
-//			this.printDriverStats();
-//			//c.close();
-//			this.printDriverStats();
+			
+			//validate pool
+			printDriverStats();
+			Connection c = getConnection();
+			printDriverStats();
+			System.out.println("Connection: " + c);
+			c.close();
+			printDriverStats();
 			
 			this.poolSetup = true;
 			
@@ -122,6 +129,7 @@ public class DatabaseAccess {
 			return true;
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println("Error setting up database pool");
 		}
 

@@ -6,24 +6,24 @@ public class Queries {
 	
 	//Equipment Information
 	public static final String RETRIEVE_ALL_EQUIPMENT_INFORMATION = 
-			"SELECT pkey, barcade, equipment_type_fk, room, serial_number, "
+			"SELECT pkey, barcode, equipment_type_fk, room, serial_number, "
 			+ "manufacturer_fk, model_number, begin_service_date, cost, age "
 			+ "FROM equipment_information "
 			+ "ORDER BY pkey ASC";
 	public static final String FIND_EQUIPMENT_INFORMATION_BY_PKEY = 
-			"SELECT pkey, barcade, equipment_type_fk, room, serial_number, "
+			"SELECT pkey, barcode, equipment_type_fk, room, serial_number, "
 			+ "manufacturer_fk, model_number, begin_service_date, cost, age "
-			+ "FROM equipment_information"
+			+ "FROM equipment_information "
 			+ "WHERE pkey=?";
 	
 	public static final String ADD_EQUIPMENT_INFORMATION = 
-			"INSERT INTO equipment_information (pkey, barcade, equipment_type_fk, room, serial_number, "
+			"INSERT INTO equipment_information (pkey, barcode, equipment_type_fk, room, serial_number, "
 			+ "manufacturer_fk, model_number, begin_service_date, cost, age) "
 			+ "VALUES (NULL,?,?,?,?,?,?,?,?,?);";
 	
 	public static final String UPDATE_EQUIPMENT_INFORMATION =
 			"UPDATE equipment_information "
-			+ "SET barcade=?, equipment_type_fk=?, room=?, serial_number=?, "
+			+ "SET barcode=?, equipment_type_fk=?, room=?, serial_number=?, "
 			+ "manufacturer_fk=?, model_number=?, begin_service_date=?, cost=?, age=? "
 			+ "WHERE pkey=?";
 	
@@ -48,7 +48,7 @@ public class Queries {
 	
 	public static final String RETRIEVE_ALL_EQUIPMENT_TYPE =
 			"SELECT pkey, equipment_id, description, rank, replacement_cost "
-			+ "FROM equipment_type"
+			+ "FROM equipment_type "
 			+ "ORDER BY pkey ASC";
 	
 	public static final String FIND_EQUIPMENT_TYPE_BY_PKEY =

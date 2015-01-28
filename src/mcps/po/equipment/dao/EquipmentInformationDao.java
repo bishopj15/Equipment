@@ -76,16 +76,25 @@ public class EquipmentInformationDao {
 	protected EquipmentInformation findEquipmentInformationByPkey(int pkey, Connection conn) throws SQLException{
 		String query = Queries.FIND_EQUIPMENT_INFORMATION_BY_PKEY;
 		
+		System.out.println(pkey + " : " + conn);
+		try {
+			databaseAccess.printDriverStats();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try {
 			EquipmentInformation equipmentInformation = new EquipmentInformation();
 			PreparedStatement ps = conn.prepareStatement(query);
+			
 			ps.setInt(1,  pkey);
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
 				equipmentInformation = new EquipmentInformation(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getDate(8), rs.getInt(9), rs.getInt(10));
 			}
+			
 			return equipmentInformation;
 		} catch (SQLException e){
 			throw e;

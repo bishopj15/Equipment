@@ -76,6 +76,7 @@ public class BuildEquipment {
 			List<EquipmentInformation> equipmentInformations = equipmentInformationDao.retrieveAllEquipmentInformation();
 			for(int i =0; i < equipmentInformations.size(); i++){
 				equipments.add( retrieveEquipmentByPkey(equipmentInformations.get(i).getPkey()) );
+				
 			}	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

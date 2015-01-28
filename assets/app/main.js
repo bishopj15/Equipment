@@ -10,8 +10,8 @@ app.controller('appCtrl', function($scope){
 
 app.config(function($stateProvider, $urlRouterProvider, assetsPath){
 	$urlRouterProvider.otherwise('/home');
-	$urlRouterProvider.when('',  '/home');
-	$urlRouterProvider.when('/',  '/home');
+	//$urlRouterProvider.when('',  '/home');
+	//$urlRouterProvider.when('/',  '/home');
 	
 	$stateProvider
 		.state('home', {

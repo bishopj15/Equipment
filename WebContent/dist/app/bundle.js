@@ -10,8 +10,8 @@ app.controller('appCtrl', function($scope){
 
 app.config(function($stateProvider, $urlRouterProvider, assetsPath){
 	$urlRouterProvider.otherwise('/home');
-	$urlRouterProvider.when('',  '/home');
-	$urlRouterProvider.when('/',  '/home');
+	//$urlRouterProvider.when('',  '/home');
+	//$urlRouterProvider.when('/',  '/home');
 	
 	$stateProvider
 		.state('home', {
@@ -23,17 +23,18 @@ app.config(function($stateProvider, $urlRouterProvider, assetsPath){
 
 angular.module('app').service('equipmentApi', function($http, apiPath){
 	var api = apiPath + '/equipment';
-	
+
 	this.getEquipments = function(){
 		return $http.get(api)
 		.then(function(result){
+			console.log(result);
 			return result.data;
 		}, function(error){
 			console.log('Error', error);
 			throw error.data;
 		});
 	};
-	
+
 	this.getEquipment = function(pkey){
 		return $http.get(api+'/pkey/'+pkey)
 		.then(function(result){
@@ -43,7 +44,7 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 			throw error.data;
 		});
 	};
-	
+
 	this.addEquipment = function(equipment){
 		return $http.post(api, equipment.getApiData)
 		.then(function(result){
@@ -53,7 +54,7 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 			throw error.data;
 		});
 	};
-	
+
 	this.updateEquipment = function(equipment){
 		return $http.put(api, equipment.getApiData)
 		.then(function(result){
@@ -63,7 +64,7 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 			throw error.data;
 		});
 	};
-	
+
 	this.deleteEquipment = function(pkey){
 		return $http.put(api+'/pkey/'+pkey)
 		.then(function(result){
@@ -73,9 +74,10 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 			throw error.data;
 		});
 	};
-	
-	
+
+
 });
+
 angular.module('app').controller('equipmentCtrl', function($scope, equipmentApi){
 	$scope.fields = ['barcode', 'equipmentType', 'room', 'serialNumber', 'manufacturer', 
 	                 'modelNumber', 'beginServiceDate', 'cost', 'age'];
