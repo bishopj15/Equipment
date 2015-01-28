@@ -56,8 +56,7 @@ public class EquipmentInformationDao {
 	}
 	
 	public List<EquipmentInformation> retrieveAllEquipmentInformation() throws SQLException{
-		try {
-			Connection conn = databaseAccess.getConnection();
+		try (Connection conn = databaseAccess.getConnection()){
 			return retrieveAllEquipmentInformation(conn);
 		} catch (SQLException e){
 			throw e;
@@ -65,8 +64,7 @@ public class EquipmentInformationDao {
 	}
 	
 	public EquipmentInformation findEquipmentInformationByPkey(int pkey) throws SQLException{
-		try {
-			Connection conn = databaseAccess.getConnection();
+		try (Connection conn = databaseAccess.getConnection()){
 			return findEquipmentInformationByPkey(pkey, conn);
 		} catch (SQLException e){
 			throw e;
@@ -75,14 +73,6 @@ public class EquipmentInformationDao {
 	
 	protected EquipmentInformation findEquipmentInformationByPkey(int pkey, Connection conn) throws SQLException{
 		String query = Queries.FIND_EQUIPMENT_INFORMATION_BY_PKEY;
-		
-		System.out.println(pkey + " : " + conn);
-		try {
-			databaseAccess.printDriverStats();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
 		try {
 			EquipmentInformation equipmentInformation = new EquipmentInformation();
@@ -102,8 +92,7 @@ public class EquipmentInformationDao {
 	}
 	
 	public int addEuipmentInformation(EquipmentInformation equipmentInformation) throws SQLException{
-		try {
-			Connection conn = databaseAccess.getConnection();
+		try (Connection conn = databaseAccess.getConnection()){
 			try{
 				conn.setAutoCommit(false);
 				boolean added = addEuipmentInformation(equipmentInformation, conn);
@@ -146,8 +135,7 @@ public class EquipmentInformationDao {
 	
 	
 	public boolean updateEquipmentInformation(EquipmentInformation equipmentInformation) throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try (Connection conn = databaseAccess.getConnection()){
 			try{
 				conn.setAutoCommit(false);
 				boolean updated = updateEquipmentInformation(equipmentInformation, conn);
@@ -185,8 +173,7 @@ public class EquipmentInformationDao {
 	}
 	
 	public boolean deleteEquipmentInformation(int pkey) throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try(Connection conn = databaseAccess.getConnection()){
 			try{
 				conn.setAutoCommit(false);
 				boolean deleted = deleteEquipmentInformation(pkey, conn);

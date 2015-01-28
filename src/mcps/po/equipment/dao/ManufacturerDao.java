@@ -33,8 +33,7 @@ public class ManufacturerDao {
 	}
 	
 	public List<Manufacturer> retrieveAllManufacturers() throws SQLException {
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try(Connection conn = databaseAccess.getConnection()){
 			return retrieveAllManufacturers(conn);
 		} catch (SQLException e){
 			throw e;
@@ -59,8 +58,7 @@ public class ManufacturerDao {
 	}
 	
 	public Manufacturer findManufacturerByPkey(int pkey) throws SQLException{
-		try {
-			Connection conn = databaseAccess.getConnection();
+		try (Connection conn = databaseAccess.getConnection()) {
 			return findManufacturerByPkey(pkey, conn);
 		} catch (SQLException e){
 			throw e;
@@ -87,8 +85,7 @@ public class ManufacturerDao {
 	}
 	
 	public int addManufacturer(Manufacturer manufacturer) throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try(Connection conn = databaseAccess.getConnection()){
 			try{
 				conn.setAutoCommit(false);
 				boolean added = addManufacturer(manufacturer, conn);

@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `equipment_db`.`equipment_type` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_db`.`equipment_type` (
   `pkey` INT NOT NULL AUTO_INCREMENT,
-  `equipment_id` INT NOT NULL,
+  `equipment_id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(45) NOT NULL,
   `rank` INT NULL,
   `replacement_cost` INT NULL,

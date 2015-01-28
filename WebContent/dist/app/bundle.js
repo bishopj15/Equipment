@@ -4,7 +4,7 @@ app.constant('assetsPath', '/equipmentdb/dist/app');
 app.constant('apiPath', '/equipmentdb/rest/v1.0');
 
 app.controller('appCtrl', function($scope){
-    $scope.name = 'angular is working';
+
 });
 
 
@@ -12,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider, assetsPath){
 	$urlRouterProvider.otherwise('/home');
 	//$urlRouterProvider.when('',  '/home');
 	//$urlRouterProvider.when('/',  '/home');
-	
+
 	$stateProvider
 		.state('home', {
 			url: '/home',
@@ -79,29 +79,33 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 });
 
 angular.module('app').controller('equipmentCtrl', function($scope, equipmentApi){
-	$scope.fields = ['barcode', 'equipmentType', 'room', 'serialNumber', 'manufacturer', 
-	                 'modelNumber', 'beginServiceDate', 'cost', 'age'];
+	$scope.fields = ['barcode', 'equipmentType', 'room', 'serialNumber', 'manufacturer',
+	                 'modelNumber', 'beginDate', 'cost', 'age'];
 	$scope.equipments = [];
 	$scope.message = '';
-	
+
 	$scope.setEquipments = function(){
-		var items;
+		var items = [];
 		equipmentApi.getEquipments()
-			.then(function(date){
-				 items = data;
+			.then(function(data){
+				console.log('retrieved data: ', data);
+				items = data;
+				if(items){
+					console.log('items data: ', items);
+					$scope.equipments = items;
+				}
+				else{
+					$scope.message = 'No results found';
+				}
 			}, function(error){
-				
+				console.log('error data: ', data);
 			});
 		console.log(items);
-		if(items){
-			$scope.equipments = items;
-		}
-		else{
-			$scope.message = 'No results found';
-		}
+
 	};
 	$scope.setEquipments();
 });
+
 angular.module('app').factory('Equipment', function(EquipmentType, Manufacturer){
 	function Equipment(data){
 		this.pkey = data.pkey;

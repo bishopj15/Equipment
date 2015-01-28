@@ -37,8 +37,7 @@ public class EquipmentTypeDao {
 	}
 	
 	public List<EquipmentType> retrieveAllEquipmentTypes() throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try (Connection conn = databaseAccess.getConnection()){
 			return retrieveAllEquipmentTypes(conn);
 		} catch (SQLException e){
 			throw e;
@@ -63,8 +62,7 @@ public class EquipmentTypeDao {
 	}
 	
 	public EquipmentType findEquipmentTypeByPkey(int pkey) throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try(Connection conn = databaseAccess.getConnection()){
 			return findEquipmentTypeByPkey(pkey, conn);
 		} catch (SQLException e){
 			throw e;
@@ -90,8 +88,7 @@ public class EquipmentTypeDao {
 	}
 	
 	public int addEquipmentType(EquipmentType equipmentType) throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try(Connection conn = databaseAccess.getConnection()){
 			try{
 				conn.setAutoCommit(false);
 				boolean added = addEquipmentType(equipmentType, conn);
@@ -130,8 +127,7 @@ public class EquipmentTypeDao {
 	}
 	
 	public boolean updateEquipmentType(EquipmentType equipmentType) throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try(Connection conn = databaseAccess.getConnection()){
 			try{
 				conn.setAutoCommit(false);
 				boolean updated = updateEquipmentType(equipmentType, conn);
@@ -165,8 +161,7 @@ public class EquipmentTypeDao {
 	}
 	
 	public boolean deleteEquipmentType(int pkey) throws SQLException{
-		try{
-			Connection conn = databaseAccess.getConnection();
+		try(Connection conn = databaseAccess.getConnection()){
 			try{
 				conn.setAutoCommit(false);
 				boolean deleted = deleteEquipmentType(pkey, conn);

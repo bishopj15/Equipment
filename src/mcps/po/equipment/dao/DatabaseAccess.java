@@ -28,7 +28,8 @@ public class DatabaseAccess {
 	
 	private static int maxActive = 20;
 	private static int maxIdle = 2;
-	private static int maxWait = 3000;
+	private static int maxWait = 10000;
+	private static long maxLifetime = 2000;
 
 	private static String dbURI = "";
 	private static String pwd = "";
@@ -92,6 +93,7 @@ public class DatabaseAccess {
 			
 			//create PoolableConnectionFactory to wrap the real connections
 			PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(connectionFactory, null);
+			poolableConnectionFactory.setDefaultAutoCommit(false);
 			
 			//pool config
 			GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
@@ -101,10 +103,11 @@ public class DatabaseAccess {
 	        
 	        
 	        
+	        
 			 
 			//create actual pool of connections
 			ObjectPool<PoolableConnection> connectionPool = new GenericObjectPool<>(poolableConnectionFactory, poolConfig);
-			
+			poolableConnectionFactory.setMaxConnLifetimeMillis(maxLifetime);
 			poolableConnectionFactory.setPool(connectionPool);
 			
 			//create pooling driver

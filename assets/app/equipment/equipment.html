@@ -7,10 +7,13 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat='equipment in equipments'>
-				<td ng-repeat='field in fields'>{{equipment[field]}}</td>
+				<td ng-repeat='field in fields'>
+					<div ng-show='field==="equipmentType"'>{{equipment[field]['description']}}</div>
+					<div ng-show='field==="manufacturer"'>{{equipment[field]['name']}}</div>
+					<div ng-hide='(field==="equipmentType" || field==="manufacturer")'>{{equipment[field]}}</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	
 	<p >{{message}}</p>
 </div>
