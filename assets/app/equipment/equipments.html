@@ -6,7 +6,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat='equipment in equipments'>
+			<tr ng-repeat='equipment in equipments' ng-click='gotoSingle(equipment)'>
 				<td ng-repeat='field in fields'>
 					<div ng-show='field==="equipmentType"'>{{equipment[field]['description']}}</div>
 					<div ng-show='field==="manufacturer"'>{{equipment[field]['name']}}</div>

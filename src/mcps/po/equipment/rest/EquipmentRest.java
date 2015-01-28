@@ -34,8 +34,6 @@ public class EquipmentRest {
 		try {
 			String jsonEquipments = mapper.writeValueAsString(equipments);
 			
-			System.out.println(jsonEquipments);
-			
 			GenericEntity<String> entity = new GenericEntity<String>(jsonEquipments){};
 			response = Response.ok(entity).build();
 		} catch (JsonProcessingException e) {

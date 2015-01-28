@@ -16,9 +16,14 @@ app.config(function($stateProvider, $urlRouterProvider, assetsPath){
 	$stateProvider
 		.state('home', {
 			url: '/home',
-			templateUrl: '..' + assetsPath + '/equipment/equipment.html',
-			controller: 'equipmentCtrl'
-		});
+			templateUrl: '..' + assetsPath + '/equipment/equipments.html',
+			controller: 'equipmentsCtrl'
+		})
+        .state('equipment', {
+            url: '/equipment/:pkey',
+            templateUrl: '..' + assetsPath + '/equipment/single_equipment.html',
+            controller: 'equipmentCtrl'
+        });
 });
 
 angular.module('app').service('equipmentApi', function($http, apiPath){
@@ -27,7 +32,6 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 	this.getEquipments = function(){
 		return $http.get(api)
 		.then(function(result){
-			console.log(result);
 			return result.data;
 		}, function(error){
 			console.log('Error', error);
@@ -78,20 +82,41 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 
 });
 
-angular.module('app').controller('equipmentCtrl', function($scope, equipmentApi){
+angular.module('app').controller('equipmentCtrl', function($scope, $state, $stateParams, equipmentApi){
+
+    $scope.equipment = {};
+
+    function loadEquipment(){
+        var item = {};
+
+        if ($stateParams.pkey){
+            equipmentApi.getEquipment($stateParams.pkey)
+            .then(function(data){
+                item = data;
+                if(item){
+                    $scope.equipment = item;
+                }
+            }, function(error){
+                console.log('error data: ', data);
+            });
+        }
+    }
+
+    loadEquipment();
+});
+
+angular.module('app').controller('equipmentsCtrl', function($scope, $state, $stateParams, equipmentApi){
 	$scope.fields = ['barcode', 'equipmentType', 'room', 'serialNumber', 'manufacturer',
 	                 'modelNumber', 'beginDate', 'cost', 'age'];
 	$scope.equipments = [];
 	$scope.message = '';
 
-	$scope.setEquipments = function(){
+	function setEquipments(){
 		var items = [];
 		equipmentApi.getEquipments()
 			.then(function(data){
-				console.log('retrieved data: ', data);
 				items = data;
 				if(items){
-					console.log('items data: ', items);
 					$scope.equipments = items;
 				}
 				else{
@@ -100,10 +125,15 @@ angular.module('app').controller('equipmentCtrl', function($scope, equipmentApi)
 			}, function(error){
 				console.log('error data: ', data);
 			});
-		console.log(items);
+	}
 
+	$scope.gotoSingle = function(equipment){
+		$state.go('equipment', {
+			'pkey': equipment.pkey
+		});
 	};
-	$scope.setEquipments();
+
+	setEquipments();
 });
 
 angular.module('app').factory('Equipment', function(EquipmentType, Manufacturer){

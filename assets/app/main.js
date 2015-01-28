@@ -16,7 +16,12 @@ app.config(function($stateProvider, $urlRouterProvider, assetsPath){
 	$stateProvider
 		.state('home', {
 			url: '/home',
-			templateUrl: '..' + assetsPath + '/equipment/equipment.html',
-			controller: 'equipmentCtrl'
-		});
+			templateUrl: '..' + assetsPath + '/equipment/equipments.html',
+			controller: 'equipmentsCtrl'
+		})
+        .state('equipment', {
+            url: '/equipment/:pkey',
+            templateUrl: '..' + assetsPath + '/equipment/single_equipment.html',
+            controller: 'equipmentCtrl'
+        });
 });

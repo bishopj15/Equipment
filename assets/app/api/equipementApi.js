@@ -4,7 +4,6 @@ angular.module('app').service('equipmentApi', function($http, apiPath){
 	this.getEquipments = function(){
 		return $http.get(api)
 		.then(function(result){
-			console.log(result);
 			return result.data;
 		}, function(error){
 			console.log('Error', error);
