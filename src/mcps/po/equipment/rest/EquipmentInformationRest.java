@@ -65,7 +65,6 @@ public class EquipmentInformationRest {
 				response = Response.status(Response.Status.NO_CONTENT).build();
 			}
 		} catch (SQLException | JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -89,7 +88,6 @@ public class EquipmentInformationRest {
 			GenericEntity<String> entity = new GenericEntity<String>(jsonEquipmentInformations){};
 			response = Response.ok(entity).build();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		} 
@@ -115,7 +113,6 @@ public class EquipmentInformationRest {
 				response = Response.status(Response.Status.NO_CONTENT).build();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -137,7 +134,6 @@ public class EquipmentInformationRest {
 				response = Response.status(Response.Status.NO_CONTENT).build();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
