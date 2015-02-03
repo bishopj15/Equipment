@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="Chrome 41.0.2272 (Mac OS X 10.9.5)" package="" timestamp="2015-02-03T20:23:42" id="0" hostname="dhcp180.int.aopslab.com">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.35 Safari/537.36"/>
+    </properties>
+  </testsuite>
+  <testsuite name="Chrome 41.0.2272 (Mac OS X 10.9.5)" package="" timestamp="2015-02-03T20:23:42" id="0" hostname="dhcp180.int.aopslab.com" tests="1" errors="0" failures="0" time="0.028">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.35 Safari/537.36"/>
+    </properties>
+    <testcase name="should have empty array" time="0.028" classname="Chrome 41.0.2272 (Mac OS X 10.9.5).equipments"/>
+    <system-out><![CDATA[
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

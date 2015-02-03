@@ -1,0 +1,22 @@
+{
+  "name": "EquipmentDB",
+  "version": "0.0.0",
+  "description": "Device Tracking System",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "karma-junit-reporter": "^0.2.2"
+  },
+  "dependencies": {
+  "beepbeep": "^1.2.0",
+  "del": "^0.1.3",
+  "gulp": "^3.8.10",
+  "gulp-concat": "^2.4.1",
+  "gulp-jshint": "^1.8.5",
+  "gulp-plumber": "^0.6.6",
+  "gulp-sass": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bishopj15/Equipment.git"
+  }
+}
