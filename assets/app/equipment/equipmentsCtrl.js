@@ -24,6 +24,7 @@ angular.module('app').controller('equipmentsCtrl', function($scope, $state, $sta
 		equipmentApi.getEquipments()
 			.then(function(data){
 				$scope.setItems(data);
+				$scope.setTotalCount(data.length);
 			}, function(error){
 				console.log('error data', error);
 			});
@@ -64,7 +65,7 @@ angular.module('app').controller('equipmentsCtrl', function($scope, $state, $sta
 	
 	$scope.showPagination = function() {
 	    return ($scope.totalItems > $scope.itemsPerPage);
-	  };
+	};
 
-	  $scope.loadItems();
+	$scope.loadItems();
 });
