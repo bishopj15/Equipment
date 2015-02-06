@@ -87,6 +87,24 @@ public class BuildEquipment {
 		return equipments;
 	}
 	
+	public List<Equipment> retrieveEquipmentsWithOffsetAndLimit(int offset, int limit){
+		List<Equipment> equipments = new ArrayList<Equipment>();
+		
+		try {
+			List<EquipmentInformation> equipmentInformations = equipmentInformationDao.retrieveEquipmentInformationByOffsetAndLimit(offset, limit);
+			for(int i =0; i < equipmentInformations.size(); i++){
+				equipments.add( retrieveEquipmentByPkey(equipmentInformations.get(i).getPkey()) );
+				
+			}	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		return equipments;
+	}
+	
 	public int addEquipment(Equipment equipment){
 		int pkey = 0;
 		

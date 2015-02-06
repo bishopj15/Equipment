@@ -63,6 +63,34 @@ public class EquipmentInformationDao {
 		}
 	}
 	
+	protected List<EquipmentInformation> retrieveEquipmentInformationByOffsetAndLimit(int offset, int limit, Connection conn) throws SQLException{
+		String query = Queries.RETRIEVE_EQUIPMENT_INFORMATION_WITH_OFFSET_AND_LIMIT;
+		
+		try{
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, offset);
+			ps.setInt(2, limit);
+			
+			ResultSet rs = ps.executeQuery();
+			List<EquipmentInformation> equipmentInformations = new ArrayList<EquipmentInformation>();
+			
+			while (rs.next()) {
+				equipmentInformations.add(new EquipmentInformation(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getDate(8), rs.getInt(9), rs.getInt(10) ));
+			}
+			return equipmentInformations;
+		} catch (SQLException e){
+			throw e;
+		}
+	}
+	
+	public List<EquipmentInformation> retrieveEquipmentInformationByOffsetAndLimit(int offset, int limit) throws SQLException{
+		try (Connection conn = databaseAccess.getConnection()){
+			return retrieveEquipmentInformationByOffsetAndLimit(offset, limit, conn);
+		} catch (SQLException e){
+			throw e;
+		}
+	}
+	
 	public EquipmentInformation findEquipmentInformationByPkey(int pkey) throws SQLException{
 		try (Connection conn = databaseAccess.getConnection()){
 			return findEquipmentInformationByPkey(pkey, conn);

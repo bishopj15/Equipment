@@ -43,6 +43,28 @@ public class EquipmentRest {
 		return response;
 	}
 	
+	@Path("/offset/{offset}/limit/{limit}")
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response getEquipmentByOffsetAndLimit(
+			@PathParam("offset") final int offset, 
+			@PathParam("limit") final int limit){
+		Response response;
+		List<Equipment> equipments = buildEquipment.retrieveEquipmentsWithOffsetAndLimit(offset, limit);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			String jsonEquipments = mapper.writeValueAsString(equipments);
+			
+			GenericEntity<String> entity = new GenericEntity<String>(jsonEquipments){};
+			response = Response.ok(entity).build();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+		return response;
+	}
+	
 	@Path("/pkey/{pkey}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})

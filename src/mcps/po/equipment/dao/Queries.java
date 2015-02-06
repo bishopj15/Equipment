@@ -4,12 +4,20 @@ public class Queries {
 	
 	public static final String GET_LAST_INSERT_ID = "SELECT LAST_INSERT_ID();";
 	
-	//Equipment Information
+	//Equipment Information 
 	public static final String RETRIEVE_ALL_EQUIPMENT_INFORMATION = 
 			"SELECT pkey, barcode, equipment_type_fk, room, serial_number, "
 			+ "manufacturer_fk, model_number, begin_service_date, cost, age "
 			+ "FROM equipment_information "
 			+ "ORDER BY pkey ASC";
+	
+	public static final String RETRIEVE_EQUIPMENT_INFORMATION_WITH_OFFSET_AND_LIMIT = 
+			"SELECT pkey, barcode, equipment_type_fk, room, serial_number, "
+			+ "manufacturer_fk, model_number, begin_service_date, cost, age "
+			+ "FROM equipment_information "
+			+ "ORDER BY pkey ASC"
+			+ "LIMIT ?,?";
+	
 	public static final String FIND_EQUIPMENT_INFORMATION_BY_PKEY = 
 			"SELECT pkey, barcode, equipment_type_fk, room, serial_number, "
 			+ "manufacturer_fk, model_number, begin_service_date, cost, age "

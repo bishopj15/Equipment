@@ -15,5 +15,11 @@
 			</tr>
 		</tbody>
 	</table>
-	<p >{{message}}</p>
+	<div id='message'>
+		<p>{{message}}</p>
+	</div>
+	
+	<div class="pagination-section" ng-show="showPagination()">
+    	<pagination total-items="totalItems" items-per-page="itemsPerPage" max-size="7" rotate="false" ng-model="currentPage" ng-change="loadPage()" boundary-links="true"></pagination>
+  </div>
 </div>

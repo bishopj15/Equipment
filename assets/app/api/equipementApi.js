@@ -1,8 +1,18 @@
 angular.module('app').service('equipmentApi', function($http, apiPath){
 	var api = apiPath + '/equipment';
 
-	this.getEquipments = function(){
+	this.getAllEquipments = function(){
 		return $http.get(api)
+		.then(function(result){
+			return result.data;
+		}, function(error){
+			console.log('Error', error);
+			throw error.data;
+		});
+	};
+	
+	this.getEquipments = function(offset, limit){
+		return $http.get(api + '/offset/' + offset + '/limit/' + limit)
 		.then(function(result){
 			return result.data;
 		}, function(error){
